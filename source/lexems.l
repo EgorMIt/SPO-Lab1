@@ -30,13 +30,13 @@
 
 0[xX][0-9A-Fa-f]+ {
     char* buffer = malloc(256);
-    sprintf(buffer, "%d", strtol(yytext + 2, NULL, 16));
+    sprintf(buffer, "%ld", strtol(yytext + 2, NULL, 16));
     yylval.node = createNode("HEX", NULL, NULL, buffer);
     return HEX;
 }
 0[bB][01]+ {
     char* buffer = malloc(256);
-    sprintf(buffer, "%d", strtol(yytext + 2, NULL, 2));
+    sprintf(buffer, "%ld", strtol(yytext + 2, NULL, 2));
     yylval.node = createNode("BIN", NULL, NULL, buffer);
     return BIN;
 }
@@ -76,9 +76,33 @@
  yylval.node = createNode("IF", NULL, NULL, "");
  return IF;
  }
+"of"                                {
+ yylval.node = createNode("OF", NULL, NULL, "");
+ return OF;
+ }
+"array"                                {
+ yylval.node = createNode("ARRAY", NULL, NULL, "");
+ return ARRAY;
+ }
+"def"                                {
+ yylval.node = createNode("DEF", NULL, NULL, "");
+ return DEF;
+ }
+"end"                                {
+ yylval.node = createNode("END", NULL, NULL, "");
+ return END;
+ }
+"begin"                                {
+ yylval.node = createNode("BEGIN_BLOCK", NULL, NULL, "");
+ return BEGIN_BLOCK;
+ }
 "else"                              {
  yylval.node = createNode("ELSE", NULL, NULL, "");
  return ELSE;
+ }
+"than"                              {
+ yylval.node = createNode("THAN", NULL, NULL, "");
+ return THAN;
  }
 "do"                                {
  yylval.node = createNode("DO", NULL, NULL, "");
@@ -87,6 +111,10 @@
 "while"                             {
  yylval.node = createNode("WHILE", NULL, NULL, "");
  return WHILE;
+ }
+"until"                             {
+ yylval.node = createNode("UNTIL", NULL, NULL, "");
+ return UNTIL;
  }
 "break"                             {
  yylval.node = createNode("BREAK", NULL, NULL, "");
@@ -114,6 +142,9 @@
  }
 "%"                                 {
  return PERCENT;
+ }
+".."                                 {
+ return DOUBLE_DOT;
  }
 ";"                                 {
  return SEMICOLON;
@@ -167,14 +198,13 @@
     yylval.node = createNode("IDENTIFIER", NULL, NULL, yytext);
     return IDENTIFIER;
 }
-\/\/.*                               { /* Комментарии */ }
+\/\/.*                               { /* Пропустить комментарии */ }
 \n                                  { /* Пропустить переводы строк */ }
 [ \t]                               { /* Пропустить пробелы и табуляцию */ }
 .                                   {
                                         // Обработка нераспознанных символов или ошибок
                                         fprintf(stderr, "Нераспознанный символ: %s\n", yytext);
                                     }
-
 %%
 
 

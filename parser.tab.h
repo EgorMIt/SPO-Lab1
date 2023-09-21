@@ -54,29 +54,37 @@
      AND = 269,
      OR = 270,
      NOT = 271,
-     IDENTIFIER = 272,
-     STR = 273,
-     COMMA = 274,
-     CHAR = 275,
-     BIN = 276,
-     HEX = 277,
-     DEC = 278,
-     TRUE = 279,
-     FALSE = 280,
-     IF = 281,
-     ELSE = 282,
-     WHILE = 283,
-     DO = 284,
-     BREAK = 285,
-     SEMICOLON = 286,
-     LPAREN = 287,
-     RPAREN = 288,
-     LBRACE = 289,
-     RBRACE = 290,
-     LBRACKET = 291,
-     RBRACKET = 292,
-     TYPEDEF = 293,
-     ARRAY_COMMAS = 294
+     OF = 272,
+     ARRAY = 273,
+     DEF = 274,
+     END = 275,
+     BEGIN_BLOCK = 276,
+     IDENTIFIER = 277,
+     STR = 278,
+     COMMA = 279,
+     DOUBLE_DOT = 280,
+     CHAR = 281,
+     BIN = 282,
+     HEX = 283,
+     DEC = 284,
+     TRUE = 285,
+     FALSE = 286,
+     IF = 287,
+     ELSE = 288,
+     THAN = 289,
+     WHILE = 290,
+     UNTIL = 291,
+     DO = 292,
+     BREAK = 293,
+     SEMICOLON = 294,
+     LPAREN = 295,
+     RPAREN = 296,
+     LBRACE = 297,
+     RBRACE = 298,
+     LBRACKET = 299,
+     RBRACKET = 300,
+     TYPEDEF = 301,
+     ARRAY_COMMAS = 302
    };
 #endif
 /* Tokens.  */
@@ -94,29 +102,37 @@
 #define AND 269
 #define OR 270
 #define NOT 271
-#define IDENTIFIER 272
-#define STR 273
-#define COMMA 274
-#define CHAR 275
-#define BIN 276
-#define HEX 277
-#define DEC 278
-#define TRUE 279
-#define FALSE 280
-#define IF 281
-#define ELSE 282
-#define WHILE 283
-#define DO 284
-#define BREAK 285
-#define SEMICOLON 286
-#define LPAREN 287
-#define RPAREN 288
-#define LBRACE 289
-#define RBRACE 290
-#define LBRACKET 291
-#define RBRACKET 292
-#define TYPEDEF 293
-#define ARRAY_COMMAS 294
+#define OF 272
+#define ARRAY 273
+#define DEF 274
+#define END 275
+#define BEGIN_BLOCK 276
+#define IDENTIFIER 277
+#define STR 278
+#define COMMA 279
+#define DOUBLE_DOT 280
+#define CHAR 281
+#define BIN 282
+#define HEX 283
+#define DEC 284
+#define TRUE 285
+#define FALSE 286
+#define IF 287
+#define ELSE 288
+#define THAN 289
+#define WHILE 290
+#define UNTIL 291
+#define DO 292
+#define BREAK 293
+#define SEMICOLON 294
+#define LPAREN 295
+#define RPAREN 296
+#define LBRACE 297
+#define RBRACE 298
+#define LBRACKET 299
+#define RBRACKET 300
+#define TYPEDEF 301
+#define ARRAY_COMMAS 302
 
 
 
@@ -128,7 +144,7 @@ typedef union YYSTYPE
     TreeNode* node;
 }
 /* Line 1529 of yacc.c.  */
-#line 131 "parser.tab.h"
+#line 147 "parser.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
