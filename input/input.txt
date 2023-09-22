@@ -5,4 +5,16 @@ def test_func() (of bool)
 
     slice[1..2, 4..6];
     //comment
+
+    begin
+        while test = true
+            a = b;
+        end
+    end
+end
+
+def test_func_second()
+   {
+        test = false;
+   } until true;
 end
