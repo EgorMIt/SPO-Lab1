@@ -1,20 +1,33 @@
 .PHONY: run clean
 
-clean:
-	rm -rf *.o printer
+# Env variables
 
-run: build-resources
-	gcc main.o parser.tab.o lex.yy.o node.o error.o -o printer && chmod +x printer
-	./printer input/input.txt > result/diagram.md
+# ------
+CC=gcc
+CFLAGS=-c
+SOURCES=main.c error.c node.c parser.tab.c lex.yy.c
+OBJECTS=$(SOURCES:.c=.o)
+EXECUTABLE=printer
+SOURCE_PATH=source
+# ------
 
-generate-resources: source/lexems.l source/parser.y
-	flex source/lexems.l
-	bison -d -t source/parser.y
+
+# Targets
+
+run: $(EXECUTABLE)
+	chmod +x $(EXECUTABLE)
+	./$(EXECUTABLE) input/input.txt > result/diagram.md
+
+generate-resources: $(SOURCE_PATH)/lexems.l $(SOURCE_PATH)/parser.y
+	flex $(SOURCE_PATH)/lexems.l
+	bison -d -t $(SOURCE_PATH)/parser.y
 	echo '#include "node.h"' | cat - parser.tab.h > temp && mv temp parser.tab.h
 
-build-resources: main.c error.c node.c generate-resources
-	gcc -c -o main.o main.c
-	gcc -c -o error.o error.c
-	gcc -c -o node.o node.c
-	gcc -c -o parser.tab.o parser.tab.c
-	gcc -c -o lex.yy.o lex.yy.c
+$(EXECUTABLE): $(OBJECTS) generate-resources
+	$(CC) $(OBJECTS) -o $@
+
+.cpp.o:
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	rm -rf *.o $(EXECUTABLE)

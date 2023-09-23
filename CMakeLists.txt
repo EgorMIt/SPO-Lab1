@@ -9,6 +9,6 @@ add_executable(SPO_Lab1 main.c
         error.c
         error.h
         lex.yy.c
-        parser.tab.c
         main.h
+        parser.tab.c
 )
